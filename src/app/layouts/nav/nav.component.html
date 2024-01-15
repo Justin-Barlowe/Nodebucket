@@ -1,1 +1,29 @@
-<nav></nav>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" RouterLink="" style="color: white;">Nodebucket</a>
+
+    <!-- Hamburger menu for smaller screens with dropdown -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white;">
+      <span class="navbar-toggler-icon" ></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="" style="color: white;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about" style="color: white;">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" style="color: white;">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" style="color: white;"><i class="bi bi-person-circle"></i> Sign In</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+/* Name: Justin Barlowe */
+/* File: styles.css */
+/* Description: CSS file for Nodebucket */
+/* Date: 1/15/2024 */
+
+
+/* Import bootstrap */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+/* Override default bootstrap colors with Ravenclaw colors*/
+
+:root {
+  --bs-primary: #0e1a40;
+  --bs-secondary: #946b2d;
+  --bs-warning: #222f5b;
+}
+
+/* Override navbar background color */
+.navbar.bg-primary {
+  background-color: var(--bs-primary) !important;
+}
+
+/* Override primary button background and border color */
+.btn-primary {
+  background-color: var(--bs-secondary) !important;
+  border-color: var(--bs-secondary) !important;
+}
+
+/* Override link hover color */
+.nav-link:hover {
+  color: var(--bs-secondary) !important;
+}
+
+/* Override warning color */
+.warning-color {
+  color: var(--bs-warning) !important;
+}
+
+.input-label {
+  font-size: larger;
+}
