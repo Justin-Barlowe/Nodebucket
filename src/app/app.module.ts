@@ -1,8 +1,10 @@
-/**
- * Title: app.module.ts
- * Author: Professor Krasso
- * Date: 8/5/23
- */
+// Title: app.module.ts
+// Author: Professor Krasso
+// Date: 8/5/23
+// Modified by: Justin Barlowe
+// Modified on: 01/24/2024
+// File: app.module.ts
+
 
 // imports statements
 import { NgModule } from '@angular/core';
