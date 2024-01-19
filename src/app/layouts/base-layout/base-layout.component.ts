@@ -1,8 +1,8 @@
-/**
- * Title: base-layout.component.ts
- * Author: Professor Krasso
- * Date: 8/5/23
- */
+//Title: base-layout.component.ts
+//Author: Professor Krasso
+//Date: 8/5/23
+//Modified by: Justin Barlowe
+//Date: 01/18/2024
 
 // imports statements
 import { Component } from '@angular/core';

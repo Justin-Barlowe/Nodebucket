@@ -1,3 +1,8 @@
+//Name: Justin Barlowe
+//File: security.service.ts
+//Date: 01/18/2024
+//Description: Auth guard
+
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';

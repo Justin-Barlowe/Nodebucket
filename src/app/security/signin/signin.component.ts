@@ -1,3 +1,10 @@
+// Name: Justin Barlowe
+// File: signin.component.ts
+// Date: 01/18/2024
+// Description: Sign in component
+
+
+
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
