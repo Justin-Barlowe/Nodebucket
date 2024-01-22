@@ -29,10 +29,10 @@ const swaggerOptions ={
         title: 'Nodebucket API',
         version: '1.0.0',
         description: 'Employee API',
-    }
-},
- apis: ['./routes/*.js',
- path.join(__dirname, './api-test/employee.yaml')],
+      }
+    },
+    apis: ['./routes/*.js',
+    path.join(__dirname, './api-test/employee.yaml')],
 };
 
 const openapiSpecification = swaggerJsDoc(swaggerOptions);
