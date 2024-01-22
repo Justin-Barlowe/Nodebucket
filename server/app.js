@@ -17,7 +17,7 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerJsDoc = require('swagger-jsdoc')
 const YAML = require('yamljs')
 // Relative path wouldn't work, had to use absolute, come back to this.
-const swaggerDocument = YAML.load('C:/buwebdev/Nodebucket/server/api-test/employee.yaml')
+const swaggerDocument = YAML.load(path.join(__dirname, './api-test/employee.yaml'));
 
 const employeeRoute = require('./routes/employee')
 
@@ -25,19 +25,18 @@ const employeeRoute = require('./routes/employee')
 const app = express()
 
 // Swagger configuration options
-const swaggerOptions = {
-  swaggerDefinition: {
-    info: {
-      title: 'Employee API',
-      description: 'Employee API Information',
-      contact: {
-        name: 'Developer'
-      },
-      servers: ['http://localhost:3000']
+const swaggerOptions ={
+    definitions: {
+      openapi: '3.0.0',
+      info: {
+        title: 'Employee API',
+        version: '1.0.0',
+        description: 'Employee API',
     }
-  },
-  apis: ['./routes/employee.js']
-}
+},
+ apis: ['./routes/*.js'],
+};
+
 
 // Configure swagger documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
