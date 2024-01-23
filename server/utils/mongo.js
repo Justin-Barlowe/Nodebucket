@@ -7,9 +7,10 @@
 
 // Import Mongo
 const { MongoClient } = require('mongodb');
+const config = require('./config');
 
 // Define connection string
-const MONGO_URL = "mongodb+srv://nodebucket_user:s3cret@bellevueuniversity.w2mknhu.mongodb.net/nodebucket?retryWrites=true&w=majority"
+const MONGO_URL = config.dbUrl;
 
 // Define mongo function
 const mongo = async (operations, next) => {
@@ -17,17 +18,21 @@ const mongo = async (operations, next) => {
   try {
     console.log('Connecting to database...');
 
+    // Connect to database
     const client = await MongoClient.connect(MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
 
-    const db = client.db('nodebucket');
+    // Define database
+    const db = client.db(config.dbname);
     console.log('Connected to database');
 
+    // Call operations
     await operations(db);
     console.log('Operation was successful');
 
+    // Close connection
     client.close();
     console.log('Connection closed');
 
