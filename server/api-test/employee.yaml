@@ -70,8 +70,8 @@ paths:
                 text:
                   type: string
       responses:
-        '200':
-          description: A successful response
+        '201':
+          description: Task created
         '400':
           description: Invalid ID supplied
         '404':
