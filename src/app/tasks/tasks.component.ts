@@ -36,6 +36,7 @@ export class TasksComponent {
 
     this.empId = parseInt(this.cookieService.get('session_user'), 10);
 
+      //
     this.taskService.getTasks(this.empId).subscribe({
       next: (res: any) => {
         console.log('Employee: ', res);
@@ -62,6 +63,7 @@ export class TasksComponent {
    });
   }
 
+  // Add task to todo list
   addTask() {
     const text = this.newTaskForm.controls['text']?.value;
 
@@ -88,6 +90,7 @@ export class TasksComponent {
   });
   }
 
+  // Hide alert timeout
   hideAlert() {
     setTimeout(() => {
       this.errorMessage = '';
