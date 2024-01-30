@@ -1,3 +1,8 @@
+// Name: Justin Barlowe
+// Date: 01/29/2024
+// File: config.js
+// Description: Configuration file for MongoDB connection login information.
+
 "use strict"
 
 const db  = {
