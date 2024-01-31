@@ -76,3 +76,69 @@ paths:
           description: Invalid ID supplied
         '404':
           description: Employee not found
+    put:
+      tags:
+        - Tasks
+      summary: Updates a task by empId.
+      description: API for updating a task for an employee in MongoDB.
+      parameters:
+        - name: empId
+          in: path
+          description: Enter a valid Employee ID between 1007-1012
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - taskId
+                - status
+              properites:
+                taskId:
+                  type: string
+                status:
+                  type: string
+                  enum:
+                    - todo
+                    - done
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+  /api/employees/{empId}/tasks/{taskId}:
+    delete:
+      tags:
+        - Tasks
+      summary: Deletes a task by empId.
+      description: API for deleting a task for an employee in MongoDB.
+      parameters:
+        - name: empId
+          in: path
+          description: Enter a valid Employee ID between 1007-1012
+          required: true
+          schema:
+            type: string
+        - name: taskId
+          in: path
+          required: true
+          description: Enter the ID of the task to delete
+          schema:
+            type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error

@@ -237,7 +237,7 @@ router.put("/:empId/tasks", (req, res, next) => {
     }
 
     mongo(async (db) => {
-      const employee = await db.collection("employees").findOLne({ empId });
+      const employee = await db.collection("employees").findOne({ empId });
       if (!employee) {
         const err = new Error("Employee not found");
         err.status = 404;

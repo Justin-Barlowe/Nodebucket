@@ -22,7 +22,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import { FourohfourComponent } from './fourohfour/fourohfour.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { FourohfourComponent } from './fourohfour/fourohfour.component';
     TasksComponent,
     AboutComponent,
     ContactComponent,
-    FourohfourComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
