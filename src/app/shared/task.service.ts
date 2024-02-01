@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Item } from './item.interface';
 
 
 @Injectable({
@@ -19,4 +20,15 @@ export class TaskService {
     return this.http.post('/api/employees/' + empID + '/tasks', { text })
   }
 
+  deleteTask(empID: number, taskID: string){
+    console.log('/api/employees/' + empID + '/tasks/' + taskID)
+    return this.http.delete('/api/employees/' + empID + '/tasks/' + taskID)
+  }
+
+  updateTask(empId: number, todo: Item[], done: Item[]) {
+    return this.http.put('/api/employees/' + empId + '/tasks', {
+      todo,
+      done
+    })
+  }
 }

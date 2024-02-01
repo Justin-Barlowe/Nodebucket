@@ -3,9 +3,10 @@
   <div class="row justify-content-center pt-4">
     <div class="col-sm-10 col-md-8 col-lg-6">
       <div *ngIf="errorMessage">
-      <div class="alert alert-danger" role="alert">
-        {{errorMessage}}
-      </div></div>
+        <div class="alert alert-danger" role="alert">
+          {{errorMessage}}
+        </div>
+      </div>
 
       <div *ngIf="successMessage">
         <div class="alert alert-success" role="alert">
@@ -16,7 +17,7 @@
   </div>
 
   <!-- Add new task form -->
-  <div class="row justify-content-center pt4">
+  <div class="row justify-content-center pt-4">
     <div class="col-sm-10 col-md-8 col-lg-6">
       <form [formGroup]="newTaskForm" (ngSubmit)="addTask()">
         <div class="input-group mb-3">
@@ -32,7 +33,7 @@
           </div>
         </div>
 
-          <!-- min length validation -->
+        <!-- min length validation -->
         <div *ngIf="newTaskForm.controls['text'].touched && newTaskForm.controls['text'].hasError('minlength')">
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Task must be at least 3 characters long</strong>
@@ -47,7 +48,6 @@
             <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
           </div>
         </div>
-
       </form>
     </div>
   </div>
@@ -55,77 +55,83 @@
 
   <!-- Todo and done container -->
   <div class="row gy-2 justify-content-center">
-
-    <!-- Start Add Task Column -->
+    <!-- Start To Do Column -->
     <div class="col-sm-5 col-md-5 col-lg-3">
       <h4 class="text-center">To Do</h4>
-
       <div class="p-3 border bg-light">
-        <div class="container">
+        <div class="container task-column"
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="todo"
+          [cdkDropListConnectedTo]="[doneList]"
+          (cdkDropListDropped)="drop($event)">
           <div *ngIf="todo.length === 0">
             <div class="alert alert-info">
               No tasks to do yet!
             </div>
           </div>
-          <div *ngFor="let item of todo" class="mt-2">
+          <div *ngFor="let item of todo" cdkDrag class="mt-2">
             <div class="row border bg-white">
               <div class="col-sm-6">
                 <div class="card-body">
-                  <div class="mt-2">{{ item.text }}</div>
-
+                  <div class="mt-2 mb-2">{{ item.text }}</div>
                 </div>
               </div>
-
               <div class="col-sm-6">
                 <div class="card-body float-end">
-                  <button class="btn">
+                  <button (click)="deleteTask(item._id)" class="btn">
                     <span class=""><i class="bi bi-trash"></i></span>
                   </button>
                 </div>
               </div>
+              <div class="col-12 d-sm-none d-md-none d-xl-none d-grid gap-2 p-2">
+                <button (click)="deleteTask(item._id)" class="btn btn-secondary">Delete</button>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
-    <!-- End todo column -->
+    <!-- End To Do Column -->
 
-    <!-- Start done column -->
+    <!-- Start Done Column -->
     <div class="col-sm-5 col-md-5 col-lg-3">
       <h4 class="text-center">Done</h4>
-
       <div class="p-3 border bg-light">
-        <div class="container">
-
+        <div class="container task-column"
+          cdkDropList
+          #doneList="cdkDropList"
+          [cdkDropListData]="done"
+          [cdkDropListConnectedTo]="[todoList]"
+          (cdkDropListDropped)="drop($event)">
           <div *ngIf="done.length === 0">
             <div class="alert alert-info">
-              No tasks to do yet!
+              No tasks done yet!
             </div>
           </div>
-          <div *ngFor="let item of done" class="mt-2">
+          <div *ngFor="let item of done" cdkDrag class="mt-2">
             <div class="row border bg-white">
               <div class="col-sm-6">
                 <div class="card-body">
-                  {{ item.text }}
+                  <div class="mt-2 mb-2">
+                  {{ item.text }}</div>
                 </div>
               </div>
-
               <div class="col-sm-6">
                 <div class="card-body float-end">
-                  <button class="btn">
-                    <span class="material-icons">Delete</span>
+                  <button (click)="deleteTask(item._id)" class="btn">
+                    <span class=""><i class="bi bi-trash"></i></span>
                   </button>
                 </div>
               </div>
+              <div class="col-12 d-sm-none d-md-none d-xl-none d-grid gap-2 p-2">
+                <button (click)="deleteTask(item._id)" class="btn btn-secondary">Delete</button>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
     <!-- End Done Column -->
-
-
   </div>
 </div>

@@ -46,11 +46,6 @@ const routes: Routes = [
         path: 'contact',
         component: ContactComponent,
         title: 'Nodebucket: Contact'
-      },
-      {
-        path: '404',
-        component: PageNotFoundComponent,
-        title: 'Nodebucket: Page Not Found'
       }
     ]
   },
