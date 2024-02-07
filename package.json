@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng build && node ./bin/www",
-    "build": "ng build && node ./bin/www",
+    "build": "ng build",
     "server": "nodemon ./bin/www",
     "client": "ng serve --open",
     "render-deploy": "ng build --configuration=production"
