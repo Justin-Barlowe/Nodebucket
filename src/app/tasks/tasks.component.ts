@@ -9,6 +9,7 @@ import { TaskService } from '../shared/task.service';
 import { Employee } from '../shared/employee.interface';
 import { Item } from '../shared/item.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-tasks',
@@ -90,11 +91,81 @@ export class TasksComponent {
   });
   }
 
+  // Delete task from list
+  deleteTask(taskId: string) {
+    console.log('Task item: ${taskId}');
+
+    if (!confirm('Are you sure you want to delete this task?')) {
+      return;
+    }
+
+    this.taskService.deleteTask(this.empId, taskId).subscribe({
+      next: (res: any) => {
+        console.log('Task deleted successfully');
+
+        if (!this.todo) this.todo = [];
+        if (!this.done) this.done = [];
+
+        this.todo = this.todo.filter(t => t._id.toString() !== taskId);
+        this.done = this.done.filter(t => t._id.toString() !== taskId);
+
+        this.successMessage = 'Task deleted successfully';
+
+        this.hideAlert();
+      },
+
+      error: (err) => {
+        console.error('Error: ', err);
+        this.errorMessage = 'Unable to delete task';
+        this.hideAlert();
+      }
+    });
+
+  }
+
+
+  // Drop Event
+  drop(event: CdkDragDrop<Item[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+
+      console.log('Moved item in array', event.container.data);
+
+      this.updateTaskList(this.empId, this.todo, this.done);
+    } else {
+      transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+      );
+
+      console.log('Moved item to another container', event.container.data);
+
+      this.updateTaskList(this.empId, this.todo, this.done);
+    }
+  }
+
+
   // Hide alert timeout
   hideAlert() {
     setTimeout(() => {
       this.errorMessage = '';
       this.successMessage = '';
     }, 5000);
+  }
+
+  // Update task list
+  updateTaskList(empId: number, todo: Item[], done: Item[]) {
+    this.taskService.updateTask(empId, todo, done).subscribe({
+      next: (res: any) => {
+        console.log('Task list updated successfully');
+      },
+      error: (err) => {
+        console.error('Error: ', err);
+        this.errorMessage = err.message;
+        this.hideAlert();
+      }
+    });
   }
 }
